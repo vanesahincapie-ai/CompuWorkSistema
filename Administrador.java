@@ -59,11 +59,11 @@ public class Administrador {
         this.contraseña = contraseña;
     }
     
-    public void registrarEmpleado(Departamento d, Empleado e) {
+    public void registrarEmpleado(Departamento d, Empleado e) throws Exception{
         d.agregarEmpleado(e);
     }
 
-    public void eliminarEmpleado(Departamento d, Empleado e) {
+    public void eliminarEmpleado(Departamento d, Empleado e) throws Exception{
         d.eliminarEmpleado(e);
     }
 
