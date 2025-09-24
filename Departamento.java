@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Departamento {
-    private final String nombre;
-    private final List<Empleado> empleados;
+    private String nombre;
+    private List<Empleado> empleados;
 
     public Departamento(String nombreDepartamento) {
         this.nombre = nombreDepartamento;
@@ -28,44 +28,38 @@ public class Departamento {
         return empleados;
     }
 
-   //CRUD
-   public boolean agregarEmpleado (Empleado nuevoEmpleado) {
-       if (empleados.contains(nuevoEmpleado))  {
-          System.out.println("El empleado ya esta en este departamento.");
-          return false;
+    //CRUD 
+    public void agregarEmpleado(Empleado nuevoEmpleado) throws Exception {
+        if (empleados.contains(nuevoEmpleado)) {
+            throw new Exception("El empleado ya está en este departamento.");
         }
         empleados.add(nuevoEmpleado);
         System.out.println("Empleado agregado correctamente.");
-        return true;
-   }
-   
-    public Empleado buscarEmpleado(Empleado empleadoBuscado) {
+    }
+
+    public Empleado buscarEmpleado(Empleado empleadoBuscado) throws Exception {
         for (Empleado e : empleados) {
             if (e.equals(empleadoBuscado)) {
                 return e;
             }
         }
-        System.out.println(" Empleado no encontrado en el departamento.");
-        return null;
-   }
+        throw new Exception("Empleado no encontrado en este departamento.");
+    }
 
-   
-   public Empleado eliminarEmpleado(Empleado empleadoAEliminar) {
+    public void eliminarEmpleado(Empleado empleadoAEliminar) throws Exception {
         if (empleados.remove(empleadoAEliminar)) {
-            System.out.println(" Empleado eliminado correctamente.");
-            return empleadoAEliminar;
+            System.out.println("Empleado eliminado correctamente.");
         } else {
-            System.out.println(" No se pudo eliminar, el empleado no existe en este departamento.");
-            return null;
+            throw new Exception("No se pudo eliminar: el empleado no existe en este departamento.");
         }
     }
-   
-      public String mostrarEmpleados() {
+
+    public String mostrarEmpleados() throws Exception {
         if (empleados.isEmpty()) {
-            return "No hay empleados en este departamento.";
+            throw new Exception("No hay empleados en este departamento.");
         }
 
-        StringBuilder lista = new StringBuilder("Lista de Empleados:\n");
+        StringBuilder lista = new StringBuilder("Lista de empleados:\n");
         for (Empleado e : empleados) {
             lista.append(e.toString()).append("\n");
         }
